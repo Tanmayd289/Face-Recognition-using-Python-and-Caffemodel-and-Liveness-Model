@@ -1,0 +1,1167 @@
+#:import Factory kivy.factory.Factory
+
+
+
+SM:
+    HomeScreen:
+    RegistrationScreen:
+    FaceEncodingInputScreen:
+    LoginScreen:
+    OperationsScreen:
+    EnterTimeScreen:
+    LastScreen:
+
+<HomeScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "home"
+    GridLayout:
+        cols:1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDLabel:
+            text: "Disclaimer : This data will be used for MegaMold International Employee time Management"
+            pos_hint: 0.9, 0.1
+            size_hint: 0.1, 0.1
+            halign: 'center'
+            font_size: 10
+            bold: True
+            italic: True
+        IncrediblyCrudeClock:
+            font_size: 25
+            bold: True
+            background_color: (1,1,1,.9)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: 0.9, 0.1
+            size_hint: 0.2, 0.2
+        Image:
+            source: 'MMI.png'
+            size_hint_x: 0.5
+            allow_stretch: True
+        MDRectangleFlatIconButton:
+            icon: "login"
+            text: " Login "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.3)
+            bold: True
+            background_color: '#4169E1'
+            on_release:
+                app.root.current = "FR"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+        MDRectangleFlatIconButton:
+            icon: "account"
+            text: " Register "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.3)
+            bold: True
+            background_color: '#4169E1'
+            on_release:
+                app.root.current = "reg"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+
+<RegistrationScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "reg"
+    GridLayout:
+        cols:1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDLabel:
+            text: "Disclaimer : This data will be used for MegaMold International Employee time Management"
+            pos_hint: {"center_x": 0.5, "top": 1}
+            size_hint: 0.9, 0.1
+            halign: 'center'
+            font_size: 12
+            bold: True
+            italic: True
+        IncrediblyCrudeClock:
+            font_size: 20
+            bold: True
+            background_color: (1,1,1,.8)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: {"x": 0.8, "top": 0.95}
+            size_hint: 0.3, 0.15
+
+        MDLabel:
+            id: label_name
+            text: "Employee Name:"
+            size_hint: 0.2, 0.2
+            halign: 'center'
+            font_size: 25
+            bold: True
+            italic: True
+
+        CustomMDTextField:
+            id: empname
+            hint_text_color: 'black'
+            hint_text: "Please enter Full Name"
+            mode: "fill"
+            on_text: root.update_button_state()
+            fill_color: 0, 0, 0, .4
+            icon_right: "counter"
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.4, 0.4
+            multiline: False
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            max_length: 30
+
+
+        MDLabel:
+            text: "Employee ID:"
+            size_hint: 0.2, 0.2
+            halign: 'center'
+            font_size: 25
+            bold: True
+            italic: True
+
+        CustomEmpIDTextField:
+            id: empid
+            hint_text_color: 'black'
+            hint_text: "Please enter Employee ID: "
+            mode: "fill"
+            fill_color: 0, 0, 0, .4
+            icon_right: "counter"
+            text_color: 'black'
+            bold: True
+            on_text: root.update_button_state()
+            required: True
+            size_hint: 0.4, 0.4
+            multiline: False
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            max_length: 20
+
+        MDRectangleFlatIconButton:
+            id: reg_but
+            icon: "account-plus"
+            disabled: True
+            text: " Continue"
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.3)
+            bold: True
+            background_color: '#4169E1'
+            on_release:
+                app.root.current = "FIS"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+        MDRectangleFlatIconButton:
+            icon: "exit-run"
+            text: " Go Back "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.3)
+            bold: True
+            background_color: '#4169E1'
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+            on_release:
+                app.root.current = "last"
+                root.manager.transition.direction = "right"
+
+<FaceEncodingInputScreen>:
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "FIS"
+    GridLayout:
+        cols:1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        MDLabel:
+            text: "Disclaimer : This data will be used for MegaMold International Employee time Management"
+            pos_hint: 0.9, 0.1
+            size_hint: 0.1, 0.1
+            halign: 'center'
+            font_size: 10
+            italic: True
+        IncrediblyCrudeClock:
+            font_size: 25
+            bold: True
+            background_color: (1,1,1,.8)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: 0.9, 0.1
+            size_hint: 0.2, 0.2
+        MDLabel:
+            text: "Instructions: Please Capture an Still Image facing towards the camera"
+            pos_hint: 0.9, 0.1
+            size_hint: 0.1, 0.1
+            halign: 'center'
+            font_size: 10
+            bold: True
+            italic: True
+        Image:
+            id: video_FIS
+            size_hint: 1, 1
+            halign: 'center'
+            allow_stretch: True
+        MDRectangleFlatIconButton:
+            id: FIS_but
+            icon: "camera-gopro"
+            text: " Take Picture "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.2)
+            bold: True
+            background_color: '#4169E1'
+            on_release:
+                app.root.current = "home"
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+        MDRectangleFlatIconButton:
+            icon: "exit-run"
+            text: " Go Back "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.1)
+            bold: True
+            background_color: '#4169E1'
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+            on_press: root.on_stop()
+            on_release:
+                app.root.current = "last"
+                root.manager.transition.direction = "right"
+
+<LoginScreen>:
+    name: "FR"
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols:1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        IncrediblyCrudeClock:
+            font_size: 30
+            bold: True
+            background_color: (1,1,1,.9)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: 0.9, 0.1
+            size_hint: 0.2, 0.2
+        MDLabel:
+            text: "Instructions: Kindly Be Stationary and face towards the Camera"
+            pos_hint: 0.9, 0.1
+            size_hint: 0.1, 0.1
+            halign: 'center'
+            font_size: 10
+            bold: True
+            italic: True
+        Image:
+            id: video
+            size_hint: 1, 1
+            halign: 'center'
+            allow_stretch: True
+
+<OperationsScreen>:
+    canvas.before:
+        Color:
+            rgba: 1, 1, 1, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    name: "OP"
+    MDNavigationLayout:
+        ScreenManager:
+            Screen:
+                BoxLayout:
+                    orientation: 'vertical'
+                    MDTopAppBar:
+                        title: 'OPERATIONS'
+                        md_bg_color: "#587eae"
+                        elevation:4.5
+                    Widget:
+                    IncrediblyCrudeClock:
+                        pos_hint: {"center_x": .5, "center_y": .7}
+                        font_size: 20
+                        bold: True
+                        background_color: (1,1,1,1)
+                        halign: 'center'
+                        size_hint: 0.9, 0.2
+                    MDBottomNavigation:
+                        id: bottom_navigation
+						text_color_active: 0, 0, 0, 1
+						MDBottomNavigationItem:
+						    id: home_tab
+							name: 'HOME'
+							text: 'HOME'
+							icon: 'home'
+	                        MDRectangleFlatButton:
+	                            icon: "home-import-outline"
+								text: 'Go to Home Page'
+								pos_hint: {'center_x':0.5,'center_y':0.3}
+								text_color: "white"
+								line_color: "black"
+								md_bg_color: "#89ade0"
+								font_style : 'H4'
+                                on_release:
+                                    app.root.current = "home"
+						MDBottomNavigationItem:
+                            icon: "clock-check-outline"
+                            text: " Clock IN "
+	                        MDRectangleFlatButton:
+	                            icon: "clock-plus-outline"
+								text: 'ENTER'
+								pos_hint: {'center_x':0.5,'center_y':0.3}
+								text_color: "white"
+								line_color: "black"
+								md_bg_color: "#89ade0"
+								icon_right: "clock-in"
+								font_style : 'H4'
+                                on_release: root.show_dialog_box_clock_in()
+                        MDBottomNavigationItem:
+							name: 'CLOCK-OUT'
+							text: " Clock Out "
+							icon: "clock-fast"
+							MDRectangleFlatIconButton:
+							    icon: "clock-fast"
+                                text: 'CLOCK-OUT'
+								pos_hint: {'center_x':0.5,'center_y':0.3}
+								text_color: "white"
+								line_color: "black"
+								md_bg_color: "#89ade0"
+								icon_right: "clock-in"
+								font_style : 'H4'
+                                on_release: root.show_dialog_box_clock_out()
+                        MDBottomNavigationItem:
+							name: 'ET'
+							text: 'ENTER TIME'
+                            icon: "timetable"
+							MDRectangleFlatIconButton:
+							    icon: "timetable"
+								text: 'Click here to log your Job details'
+								pos_hint: {'center_x':0.5,'center_y':0.3}
+								text_color: "white"
+								line_color: "black"
+								md_bg_color: "#89ade0"
+								icon_right: "clock-in"
+								font_style : 'H4'
+                                on_release:
+                                    root.db_prompt()
+                                    ## insert_employee_EnterTime(EID, EN)
+                                    app.root.current = "ET"
+                MDFloatLayout:
+                    Image:
+                        source : 'MMI.png'
+                        size_hint: 0.4, 0.4
+                        pos_hint: {"center_x": .5, "center_y": .7}
+
+#:import Factory kivy.factory.Factory
+
+
+#: import SpinnerOption kivy.uix.spinner.SpinnerOption
+#: import dp kivy.metrics.dp
+
+<MySpinnerOption@SpinnerOption>:
+    background_color: "#FFFFFF"
+    background_down: "#FFFFFF"
+    ## font_size: dp(5)
+    font_size: 5
+
+<MySpinner@Spinner>:
+    option_cls: MySpinnerOption
+    background_color: "#FFFFFF"
+    background_down: "#FFFFFF"
+    ## font_size: dp(5)
+    font_size: '5sp'
+
+
+
+
+
+
+
+<EnterTimeScreen>:
+    name: "ET"
+    MDFloatLayout:
+        id: ETS_layout
+        adaptive_height: True
+        IncrediblyCrudeClock:
+            font_size: 25
+            bold: True
+            background_color: (1,1,1,.9)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: {"center_x": .5, "center_y": 5.7}
+            size_hint: 0.5, 0.2
+
+        MDLabel:
+            id: jobnum_label
+            text: "Job Number"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": 0.17, "center_y": 5.2}
+            font_size: 18
+            bold: True
+            italic: True
+
+        MDTextFieldRect:
+            id: job_num1
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 4.8}
+            max_text_length: 10
+        MDLabel:
+            id: op_num
+            text: "Operation Name"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .44, "center_y": 5.2}
+            font_size: 18
+            bold: True
+            italic: True
+
+        Spinner:
+            id: spinner_id1
+            text: "None"
+            font_size: 15
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 4.8}
+            on_text: root.on_spinner_select(self.text)
+
+
+
+        MDLabel:
+            id: timework_label
+            text: "Regular Hours"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .74, "center_y": 5.2}
+            font_size: 18
+            bold: True
+            italic: True
+        MDTextFieldRect:
+            id: time_work1
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 4.8}
+            on_text: root.calculate_sum(time_work1.text)
+
+        MDLabel:
+            id: ot_label
+            text: "OverTime Hours"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .925, "center_y": 5.2}
+            font_size: 18
+            bold: True
+            italic: True
+        MDTextFieldRect:
+            id: ot1
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 4.8}
+            on_text: root.calculate_sum(ot1.text)
+
+        MDTextFieldRect:
+            id: job_num2
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 4.4}
+
+
+        Spinner:
+            id: spinner_id2
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 4.4}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work2
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 4.4}
+            on_text: root.calculate_sum(time_work2.text)
+
+        MDTextFieldRect:
+            id: ot2
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 4.4}
+            on_text: root.calculate_sum(ot2.text)
+
+
+        MDTextFieldRect:
+            id: job_num3
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 4}
+
+
+        Spinner:
+            id: spinner_id3
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 4}
+            on_text: root.on_spinner_select(self.text)
+
+
+
+        MDTextFieldRect:
+            id: time_work3
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 4}
+            on_text: root.calculate_sum(time_work3.text)
+
+        MDTextFieldRect:
+            id: ot3
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 4}
+            on_text: root.calculate_sum(ot3.text)
+
+        MDTextFieldRect:
+            id: job_num4
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 3.6}
+
+
+        Spinner:
+            id: spinner_id4
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 3.6}
+            on_text: root.on_spinner_select(self.text)
+
+
+
+
+        MDTextFieldRect:
+            id: time_work4
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 3.6}
+            on_text: root.calculate_sum(time_work4.text)
+
+        MDTextFieldRect:
+            id: ot4
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 3.6}
+            on_text: root.calculate_sum(ot4.text)
+
+
+        MDTextFieldRect:
+            id: job_num5
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 3.2}
+
+
+        Spinner:
+            id: spinner_id5
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 3.2}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work5
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 3.2}
+            on_text: root.calculate_sum(time_work5.text)
+
+
+        MDTextFieldRect:
+            id: ot5
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 3.2}
+            on_text: root.calculate_sum(ot5.text)
+
+        MDTextFieldRect:
+            id: job_num6
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 2.8}
+
+
+        Spinner:
+            id: spinner_id6
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 2.8}
+            on_text: root.on_spinner_select(self.text)
+
+
+
+        MDTextFieldRect:
+            id: time_work6
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 2.8}
+            on_text: root.calculate_sum(time_work6.text)
+
+
+        MDTextFieldRect:
+            id: ot6
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 2.8}
+            on_text: root.calculate_sum(ot6.text)
+
+
+        MDTextFieldRect:
+            id: job_num7
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 2.4}
+
+
+        Spinner:
+            id: spinner_id7
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 2.4}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work7
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 2.4}
+            on_text: root.calculate_sum(time_work7.text)
+
+
+        MDTextFieldRect:
+            id: ot7
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 2.4}
+            on_text: root.calculate_sum(ot7.text)
+
+
+        MDTextFieldRect:
+            id: job_num8
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 2}
+
+
+        Spinner:
+            id: spinner_id8
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 2}
+            on_text: root.on_spinner_select(self.text)
+
+
+
+        MDTextFieldRect:
+            id: time_work8
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 2}
+            on_text: root.calculate_sum(time_work8.text)
+
+
+        MDTextFieldRect:
+            id: ot8
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 2}
+            on_text: root.calculate_sum(ot8.text)
+
+
+
+
+
+
+
+
+        MDTextFieldRect:
+            id: job_num9
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 1.6}
+
+        Spinner:
+            id: spinner_id9
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 1.6}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work9
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 1.6}
+            on_text: root.calculate_sum(time_work9.text)
+
+
+        MDTextFieldRect:
+            id: ot9
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 1.6}
+            on_text: root.calculate_sum(ot9.text)
+
+        MDTextFieldRect:
+            id: job_num10
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 1.2}
+
+
+
+        Spinner:
+            id: spinner_id10
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 1.2}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work10
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 1.2}
+            on_text: root.calculate_sum(time_work10.text)
+
+
+        MDTextFieldRect:
+            id: ot10
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 1.2}
+            on_text: root.calculate_sum(ot10.text)
+
+        MDTextFieldRect:
+            id: job_num11
+            fill_color: 0, 0, 0, .4
+            text_color: 'black'
+            bold: True
+            required: True
+            size_hint: 0.15, 0.3
+            input_filter: 'int'
+            font_size: 15
+            pos_hint: {"center_x": 0.125, "center_y": 0.8}
+
+
+        Spinner:
+            id: spinner_id11
+            text: "None"
+            background_color: '#6CA6FF'
+            color: '#FFFFFF'
+            size_hint: 0.4, 0.3
+            pos_hint: {"center_x": .425, "center_y": 0.8}
+            on_text: root.on_spinner_select(self.text)
+
+
+        MDTextFieldRect:
+            id: time_work11
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .7125, "center_y": 0.8}
+            on_text: root.calculate_sum(time_work11.text)
+
+
+        MDTextFieldRect:
+            id: ot11
+            fill_color: 0, 0, 0, .4
+            icon_right: "timer-plus-outline"
+            bold: True
+            required: True
+            text_color: 'black'
+            size_hint: 0.15, 0.3
+            multiline: False
+            input_filter: 'float'
+            font_size: 15
+            pos_hint: {"center_x": .9, "center_y": 0.8}
+            on_text: root.calculate_sum(ot11.text)
+
+
+
+        MDLabel:
+            text: "Total :"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .735, "center_y": 0.4}
+            font_size: 15
+            bold: True
+            italic: True
+        MDLabel:
+            id: result_label_reg
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .82255, "center_y": 0.4}
+            font_size: 15
+            bold: True
+            italic: True
+
+        MDLabel:
+            text: "Total:"
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .925, "center_y": 0.4}
+            font_size: 15
+            bold: True
+            italic: True
+        MDLabel:
+            id: result_label_ot
+            size_hint: 0.2, 0.2
+            pos_hint: {"center_x": .995, "center_y": 0.4}
+            font_size: 15
+            bold: True
+            italic: True
+
+
+        MDRectangleFlatIconButton:
+            id: et_but
+            icon: "tag-arrow-up-outline"
+            text: " Add Work Entries "
+            font_size: 20
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (0.2,0.3)
+            bold: True
+            background_color: '#4169E1'
+            pos_hint: {"center_x": 0.19, "center_y": .3}
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+            on_release: root.Enter_Time()
+
+
+        MDRectangleFlatIconButton:
+            icon: "chevron-left"
+            text: "BACK"
+            user_font_size: "35sp"
+            bold: True
+            italic: True
+            background_color: '#4169E1'
+            pos_hint: {"center_x": .1, "center_y": 5.7}
+            on_release: root.on_back_button()
+
+
+<LastScreen>:
+    name: "last"
+    canvas.before:
+        Color:
+            rgba: (1,1,1,1)
+        Rectangle:
+            pos: self.pos
+            size: self.size
+    GridLayout:
+        cols:1
+        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+        IncrediblyCrudeClock:
+            font_size: 30
+            bold: True
+            background_color: (1,1,1,.9)
+            halign: 'center'
+            canvas.before:
+                Color:
+                    rgba: self.background_color
+                Rectangle:
+                    size: self.size
+                    pos: self.pos
+            pos_hint: 0.9, 0.1
+            size_hint: 0.2, 0.2
+        Image:
+            source: 'MMI.png'
+            size_hint_x: 0.8
+            allow_stretch: True
+        MDRectangleFlatIconButton:
+            icon: "archive-check-outline"
+            text: " Thank you "
+            font_size: "40sp"
+            md_bg_color: '#4169E1'
+            text_size: 20
+            size_hint: (1,0.5)
+            bold: True
+            background_color: '#4169E1'
+            theme_text_color: "Custom"
+            text_color: "white"
+            line_color: "green"
+            icon_color: "white"
+            on_press:
+                app.root.current = "home"
