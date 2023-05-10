@@ -1,0 +1,35 @@
+ pip install "kivy[base]" kivy_examples --no-binary kivy
+
+ py -m pip install apache-airflo
+
+
+ py -m pip install "kivy[base]" kivy_examples --no-binary kivy
+
+py -m pip install opencv-python
+py -m pip install face-recognition
+
+py -m pip install plotly-express
+py -m pip install flask-cors
+py -m pip install iaesdk
+
+py -m pip install face_recognition
+py -m pip install cmake
+
+py -m pip install "git+https://github.com/Kitware/CMake/releases/download/v3.25.0-rc1/cmake-3.25.0-rc1-windows-x86_64.msi"
+
+py -m pip setup.py bdist_wheel
+
+pip install cmake
+py -m pip install dlib
+
+py -m  RUN apt-get update && apt-get install -y cmake
+
+py -m pip install dlib --user
+
+py -m pip install face_recognition
+
+py -m pip install suds
+
+py -m pip install zeep==4.0.0
+
+py -m pip install buildozer
